@@ -2,7 +2,8 @@
 
 <!-- turbo frame knows how to replace it by the new_message id, así sabe como conectar el frame correcto -->
 <%= turbo_frame_tag "new_message", target: "_top" do %>
-  <%= form_with(model: [@message.room, @message]) do |form| %>
+<!-- loading the new stimulus controller -->
+  <%= form_with(model: [@message.room, @message], data: { controller: "reset_form", action: "turbo:submit-end->reset_form#reset" }) do |form| %>
     <div class="field">
       <%= form.label :content %>
       <%= form.text_field :content %>
