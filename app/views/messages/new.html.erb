@@ -1,11 +1,14 @@
 <h1>New Message</h1>
 
-<%= form_with(model: [@message.room, @message]) do |form| %>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-    <%= form.submit %>
-  </div>
+<!-- turbo frame knows how to replace it by the new_message id, así sabe como conectar el frame correcto -->
+<%= turbo_frame_tag "new_message", target: "_top" do %>
+  <%= form_with(model: [@message.room, @message]) do |form| %>
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_field :content %>
+      <%= form.submit %>
+    </div>
+  <% end %>
 <% end %>
 
 <%= link_to 'Back', @message.room %>
